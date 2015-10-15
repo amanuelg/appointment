@@ -1,9 +1,13 @@
 class AppointmentsController < ApplicationController
+
+#helper to change the start time and end time look readable
 helper :appointments
+
+
 before_action :set_appointment, only: [:show, :edit, :update, :destroy]
 
     def index 
-        @appointments = Appointment.paginate(page: params[:page],per_page: 10)
+        @appointments = Appointment.paginate(page: params[:page],per_page: 10).order('start_time DESC')
     end
     
     def show
@@ -59,9 +63,10 @@ before_action :set_appointment, only: [:show, :edit, :update, :destroy]
       @appointment = Appointment.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    #strong parametrs
     def appointment_params
         valid = params.require(:appointment).permit(:start_time, :end_time, :first_name, :last_name, :comment)
+        #changing the datetime format from bootstrap-datetime-picker so its easy to persist
         date_format = "%m/%d/%Y %I:%M %p"
         valid[:start_time] = valid[:start_time] != "" ? DateTime.strptime(valid[:start_time], date_format) : valid[:start_time]
         valid[:end_time] = valid[:end_time] != "" ? DateTime.strptime(valid[:end_time], date_format) : valid[:end_time]

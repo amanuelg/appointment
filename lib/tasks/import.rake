@@ -1,3 +1,5 @@
+#rake task to import the initial data given
+
 require 'csv'
 
 desc "Importing appointments as initial data"

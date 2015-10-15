@@ -3,7 +3,8 @@ require 'csv'
 
 class Appointment < ActiveRecord::Base
     
-    #validate :start_should_be_future, :end_time_should_be_future
+    
+    validate :start_should_be_future, :end_time_should_be_future
     validate :appointment_overlapping
     validate :start_shouldbe_less_than_ent_time
     
@@ -34,6 +35,7 @@ class Appointment < ActiveRecord::Base
     
     def appointment_overlapse
         overlaping = self.class.overlaps(self)
+        #when updating an object don't check if it overlaps with itself
         if self.new_record?
             self.class.overlaps(self).count > 0
         else
