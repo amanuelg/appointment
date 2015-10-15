@@ -1,0 +1,91 @@
+
+<%= render 'shared/error_message', obj: @appointment %>
+
+  <div class="form_horizontal well" >
+  <%= form_for(@appointment) do |f| %>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col col-sm-6">
+                          <%= f.label :first_name, class: "col-sm-3" %>
+                          <div class="col col-sm-6">
+                              <%= f.text_field :first_name, class: "form-control" %>
+                          </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <div class="row">
+                    <div class="col col-sm-6">
+                          <%= f.label :last_name, class: "col-sm-3" %>
+                          <div class="col col-sm-6">
+                              <%= f.text_field :last_name, class: "form-control" %>
+                          </div>
+                    </div>
+                </div>
+            </div>
+    
+    <div class="form-group">
+        <div class="row">
+            <div class="col col-sm-6">
+              <%= f.label :start_time , class: "col col-sm-3" %>
+                <div class='col col-sm-6' >
+                    <%= f.text_field :start_time, class: "form-control", id: 'datetimepicker_start' %>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="row">
+            <div class="col col-sm-6">
+              <%= f.label :end_time , class: "col col-sm-3" %>
+                <div class='col col-sm-6' >
+                    <%= f.text_field :end_time, class: "form-control", id: 'datetimepicker_end' %>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="row">
+            <div class="col col-sm-6">
+                <%= f.label :comment, class: "col-sm-3" %>
+                    <div class="col col-sm-6">
+                        <%= f.text_area :comment, class: "form-control" %>
+                    </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+      <%= f.submit @appointment.new_record? ? 'Create Appointment' : 'Update Appointment', class: 'btn btn-success', id: 'appointment_sub' %>
+    </div>
+    </div>
+  <% end %>
+  
+  <br><%= link_to 'Back', appointments_path %>
+</div>
+
+
+<script type="text/javascript">
+            $(document).ready(function () {
+                //set default value 
+                var start = $.now();
+                minDate = start
+                
+                $('#datetimepicker_start').datetimepicker({useCurrent: false});
+                $('#datetimepicker_end').datetimepicker({useCurrent: false });
+                
+                $('#datetimepicker_start').datetimepicker().on('dp.change', function(e){
+                        $('#datetimepicker_end').data("DateTimePicker").minDate(e.date);
+                                
+                });
+                    
+                $('#datetimepicker_end').datetimepicker().on('dp.change', function(e){
+                        $('#datetimepicker_start').data("DateTimePicker").maxDate(e.date);
+                                
+                });
+            });
+            
+</script>

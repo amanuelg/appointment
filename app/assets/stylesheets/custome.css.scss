@@ -1,0 +1,23 @@
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'bootstrap-datetimepicker';
+input,text_field{
+    width: 75%;
+    
+}
+
+input#appointment_sub{
+    width: 20%;
+}
+
+label{
+    width: 10%;
+}
+
+.form_horizontal{
+    text_align: center;
+    margin:0 auto;
+    width: auto;
+}
+
+

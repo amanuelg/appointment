@@ -1,0 +1,24 @@
+<h3>Edit Appointment</h3>
+<hr>
+<%= render 'form' %>
+<script type="text/javascript">
+            $(function () {
+                //set default value 
+                $('#datetimepicker_start').datetimepicker({
+                    
+                });
+                $('#datetimepicker_end').datetimepicker({
+                    useCurrent: false
+                });
+                
+                $('#datetimepicker_start').datetimepicker().on('dp.change', function(e){
+                        $('#datetimepicker_end').data("DateTimePicker").minDate(e.date);
+                                
+                });
+                    
+                $('#datetimepicker_end').datetimepicker().on('dp.change', function(e){
+                        $('#datetimepicker_start').data("DateTimePicker").maxDate(e.date);
+                                
+                });
+            });
+</script>
