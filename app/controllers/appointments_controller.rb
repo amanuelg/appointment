@@ -3,7 +3,7 @@ helper :appointments
 before_action :set_appointment, only: [:show, :edit, :update, :destroy]
 
     def index 
-        @appointments = Appointment.all
+        @appointments = Appointment.paginate(page: params[:page],per_page: 10)
     end
     
     def show

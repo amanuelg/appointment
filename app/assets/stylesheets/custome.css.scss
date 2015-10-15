@@ -1,9 +1,15 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
+
 input,text_field{
     width: 75%;
     
+}
+
+.navbar{
+    background-color: #2A4E6C;
+    color: white;
 }
 
 input#appointment_sub{

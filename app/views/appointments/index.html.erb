@@ -1,7 +1,6 @@
-<h3>List of Appointments</h3>
-<hr>
-<%= link_to "New Appointment", new_appointment_path, class: "btn btn-primary" %>
-<br />
+
+    <%= link_to "New Appointment", new_appointment_path, class: "btn btn-primary" %>
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -31,3 +30,4 @@
     </tbody>
     
 </table>
+<%= will_paginate %>
