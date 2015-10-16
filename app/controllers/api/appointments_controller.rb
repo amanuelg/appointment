@@ -1,8 +1,19 @@
 class Api::AppointmentsController < Api::ApiController
 
-    
+    #index now accepts parameters[optional] start_time and ent_time
     def index
-        render json: Appointment.all
+        if params[:start_time] && params[:end_time]
+            #catch if wrong datetime format is sent
+            begin 
+                startt = DateTime.strptime(params[:start_time], "%m/%d/%y %H:%M") 
+                endt = DateTime.strptime(params[:end_time], "%m/%d/%y %H:%M") 
+                render json: Appointment.where("start_time >= ? and end_time <= ?", startt,endt)
+            rescue
+                render status: 422, json: {message: "wrong parameters, start_time or end_time should be like in format of m/d/y H:M  eg: '10/18/15 09:00'!" }.to_json
+            end
+        else
+            render json: Appointment.all
+        end
     end
     
     def show
